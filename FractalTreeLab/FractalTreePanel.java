@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 
 public class FractalTreePanel extends JPanel
 {
-    private final int PANEL_WIDTH = 400;
-    private final int PANEL_HEIGHT = 400;
+    private final int PANEL_WIDTH = 1000;
+    private final int PANEL_HEIGHT = 800;
 
     private final double SQ = Math.sqrt(3.0) / 6;
 
@@ -53,8 +53,8 @@ public class FractalTreePanel extends JPanel
         {
             page.drawLine(x1, y1, x2, y2);
             page.drawLine(x1, y1, x3, y3);
-            drawFractal (order-1, x2, y2, page,length, totalAngle, angle);
-            drawFractal (order-1, x3, y3, page, length, totalAngle, angle-1);
+            drawFractal (order-1, x2, y2, page, (int)(length *.9), totalAngle, angle);
+            drawFractal (order-1, x3, y3, page, (int)(length *.9), totalAngle, angle);
         }
     }
 
@@ -64,7 +64,8 @@ public class FractalTreePanel extends JPanel
 
         page.setColor (Color.green);
 
-                 drawFractal (current, 200, 400, page, 10, 0 , 5);
+        drawFractal (current, 500, 150, page, 100, 0 , 50);
+        drawFractal (current, 500, 700, page, 50, 0 , 10);
     }
 
     //-----------------------------------------------------------------

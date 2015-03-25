@@ -11,10 +11,10 @@ import javax.swing.*;
 
 public class FractalTreeViewer implements ActionListener
 {
-    private final int WIDTH = 400;
-    private final int HEIGHT = 500;
+    private final int WIDTH = 1000;
+    private final int HEIGHT = 900;
 
-    private final int MIN = 1, MAX = 20;
+    private final int MIN = 1, MAX = 30;
 
     private JButton increase, decrease;
     private JLabel titleLabel, orderLabel;
@@ -49,7 +49,7 @@ public class FractalTreeViewer implements ActionListener
         decrease.setMargin (new Insets (0, 0, 0, 0));
         decrease.addActionListener (this);
 
-        orderLabel = new JLabel ("Order: 1");
+        orderLabel = new JLabel ("Order: 20");
         orderLabel.setForeground (Color.black);
 
         tools.add (titleLabel);
@@ -59,7 +59,7 @@ public class FractalTreeViewer implements ActionListener
         tools.add (Box.createHorizontalStrut (20));
         tools.add (orderLabel);
 
-        drawing = new FractalTreePanel (1);
+        drawing = new FractalTreePanel (20);
 
         panel = new JPanel();
         panel.add (tools);
