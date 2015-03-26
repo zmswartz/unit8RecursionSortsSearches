@@ -41,15 +41,16 @@ public class FractalTreePanel extends JPanel
         else
         {
             int x2, y2, x3, y3;
-            totalAngle += angle;
-            double sinValue = Math.sin(Math.toRadians(totalAngle));
-            double cosValue = Math.cos(Math.toRadians(totalAngle));
+            
+            double sinValue = Math.sin(Math.toRadians(totalAngle+angle));
+            double cosValue = Math.cos(Math.toRadians(totalAngle+angle));
             double deltaX = sinValue * length;
             double deltaY = cosValue * length;
             x2 = x1 + (int)deltaX;
             y2 = y1 - (int)deltaY;
             x3 = x1 - (int)deltaX;
             y3 = y1 - (int)deltaY;
+            totalAngle += angle;
             page.drawLine(x1, y1, x2, y2);
             page.drawLine(x1, y1, x3, y3);
             drawFractal (order-1, x2, y2, page, (int) (length*.9), totalAngle, angle);
