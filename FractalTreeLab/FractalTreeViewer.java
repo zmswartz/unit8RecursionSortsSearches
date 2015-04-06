@@ -48,7 +48,7 @@ public class FractalTreeViewer implements ActionListener
         decrease.setPressedIcon (new ImageIcon ("decreasePressed.gif"));
         decrease.setMargin (new Insets (0, 0, 0, 0));
         decrease.addActionListener (this);
-
+        
         orderLabel = new JLabel ("Order: 20");
         orderLabel.setForeground (Color.black);
 
@@ -58,7 +58,8 @@ public class FractalTreeViewer implements ActionListener
         tools.add (increase);
         tools.add (Box.createHorizontalStrut (20));
         tools.add (orderLabel);
-
+        
+        //Starts the order at 20
         drawing = new FractalTreePanel (20);
 
         panel = new JPanel();

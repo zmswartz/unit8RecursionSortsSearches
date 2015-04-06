@@ -11,13 +11,14 @@ public class FractalTreePanel extends JPanel
 {
     private final int PANEL_WIDTH = 1000;
     private final int PANEL_HEIGHT = 800;
-
-    private final double SQ = Math.sqrt(3.0) / 6;
-
-    private final int TOPX = 200, TOPY = 20;
-    private final int LEFTX = 60, LEFTY = 300;
-    private final int RIGHTX = 340, RIGHTY = 300;
-
+    
+    //variables to change to get a different tree
+    private double lengthRatio = 0.9;
+    private int branchLength = 50;
+    private double startingAngle = 0;
+    private double changeInAngle = 10;
+    private int minLength = 5;
+    
     private int current; //current order
 
     //-----------------------------------------------------------------
@@ -33,7 +34,7 @@ public class FractalTreePanel extends JPanel
     public void drawFractal (int order, int x1, int y1,Graphics page, int length,
     double totalAngle, double angle)
     {
-        if (length <= 5 || order == 1  )
+        if (length <= minLength || order == 1  )
         {
             return;
         }
@@ -41,13 +42,14 @@ public class FractalTreePanel extends JPanel
         else
         {
             int x2, y2, x3, y3;
-            
+            //left branch
             double sinValue = Math.sin(Math.toRadians(totalAngle+angle));
             double cosValue = Math.cos(Math.toRadians(totalAngle+angle));
             double deltaX = sinValue * length;
             double deltaY = cosValue * length;
             x2 = x1 + (int)deltaX;
             y2 = y1 - (int)deltaY;
+            //right branch
             sinValue = Math.sin(Math.toRadians(totalAngle-angle));
             cosValue = Math.cos(Math.toRadians(totalAngle-angle));
             deltaX = sinValue * length;
@@ -57,8 +59,8 @@ public class FractalTreePanel extends JPanel
             
             page.drawLine(x1, y1, x2, y2);
             page.drawLine(x1, y1, x3, y3);
-            drawFractal (order-1, x2, y2, page, (int) (length*.9), totalAngle+angle, angle);
-            drawFractal (order-1, x3, y3, page, (int) (length*.9), totalAngle-angle, angle);
+            drawFractal (order-1, x2, y2, page, (int) (length*lengthRatio), totalAngle+angle, angle);
+            drawFractal (order-1, x3, y3, page, (int) (length*lengthRatio), totalAngle-angle, angle);
         }
     }
 
@@ -69,7 +71,7 @@ public class FractalTreePanel extends JPanel
         page.setColor (Color.green);
 
         
-        drawFractal (current, 500, 700, page, 50, 0 , 10);
+        drawFractal (current, 500, 700, page, branchLength, startingAngle , changeInAngle);
     }
 
     //-----------------------------------------------------------------
